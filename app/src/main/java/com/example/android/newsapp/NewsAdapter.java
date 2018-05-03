@@ -62,7 +62,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
                 fragmentTransaction.replace(R.id.frag_container,details);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
-                Log.i("Tager","Click");
             }
         });
     }
