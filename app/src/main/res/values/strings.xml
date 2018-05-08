@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">News App</string>
+    <string name="nothing_found">Nothing Found</string>
+    <string name="open_browser"><u>Open In Browser</u>\nFor Full Content</string>
 </resources>

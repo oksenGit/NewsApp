@@ -2,25 +2,23 @@ package com.example.android.newsapp;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import org.sufficientlysecure.htmltextview.HtmlTextView;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -50,18 +48,21 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         holder.title.setText(N.title);
         holder.content.setHtml(N.content);
         holder.date.setText(N.date);
+        holder.section.setText(N.section);
         if(N.thumb != null){
-            holder.thumb.setImageBitmap(N.thumb);
+            Glide.with(context).load(N.thumb).into(holder.thumb);
         }
         holder.readmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Fragment details = new DetailsFragment(N.title,N.date,N.content,N.thumb);
-                FragmentManager fragmentManager = ((FragmentActivity)context).getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.frag_container,details);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
+                Intent intent = new Intent(context, DetailsActivity.class);
+                intent.putExtra(DetailsActivity.EXTRA_TITLE, N.title);
+                intent.putExtra(DetailsActivity.EXTRA_DATE, N.date);
+                intent.putExtra(DetailsActivity.EXTRA_CONTENT, N.content);
+                intent.putExtra(DetailsActivity.EXTRA_THUMB, N.thumb);
+                intent.putExtra(DetailsActivity.EXTRA_SECTION, N.section);
+                intent.putExtra(DetailsActivity.EXTRA_URL, N.url);
+                context.startActivity(intent);
             }
         });
     }
@@ -78,6 +79,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         TextView title;
         @BindView(R.id.newsitem_date)
         TextView date;
+        @BindView(R.id.newsitem_section)
+        TextView section;
         @BindView(R.id.newsitem_content)
         HtmlTextView content;
         @BindView(R.id.newsitem_readmore)

@@ -26,16 +26,11 @@
 
     <ImageView
         android:id="@+id/search_go"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="35dp"
+        android:layout_height="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/search_edittext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/arrow_right"
         tools:ignore="VectorDrawableCompat" />
 

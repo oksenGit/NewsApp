@@ -21,6 +21,7 @@ import java.util.List;
 
 public class QueryUtils {
     private static String LOG_TAG = "QueryUtils";
+
     /**
      * Create a private constructor because no one should ever create a {@link QueryUtils} object.
      * This class is only meant to hold static variables and methods, which can be accessed
@@ -35,7 +36,7 @@ public class QueryUtils {
      */
     public static ArrayList<NewsItem> extractNews(String JSON_RESPONSE) {
 
-        // Create an empty ArrayList that we can start adding earthquakes to
+        // Create an empty ArrayList that we can start adding News to
         ArrayList<NewsItem> newsItems = new ArrayList<>();
 
         // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
@@ -47,28 +48,28 @@ public class QueryUtils {
             JSONArray results = response.getJSONArray("results");
             for (int i = 0; i < results.length(); i++) {
                 JSONObject obj = results.getJSONObject(i);
-
                 String date = obj.getString("webPublicationDate");
-
+                String section = obj.getString("sectionName");
+                String url = obj.getString("webUrl");
                 JSONObject fields = obj.getJSONObject("fields");
                 String title = fields.getString("headline");
-                String thumbString = fields.getString("thumbnail");
-                URL thumbURL = new URL(thumbString);
-                Bitmap thumb = BitmapFactory.decodeStream(thumbURL.openConnection().getInputStream());
+                String thumbString = null;
+                if (fields.has("thumbnail")) {
+                    thumbString = fields.getString("thumbnail");
+                }
+                else{
+                    thumbString = R.drawable.ic_launcher_background+"";
+                }
+
                 JSONObject blocks = obj.getJSONObject("blocks");
                 JSONArray body = blocks.getJSONArray("body");
-
                 String content = body.getJSONObject(0).getString("bodyTextSummary");
 
-                newsItems.add(new NewsItem(title, thumb, date, content));
+                newsItems.add(new NewsItem(title, thumbString, date,section,url, content));
             }
 
         } catch (JSONException e) {
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+            Log.e("QueryUtils", "Problem parsing the News JSON results", e);
         }
 
         return newsItems;
