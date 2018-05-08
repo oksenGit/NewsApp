@@ -1,10 +1,8 @@
 package com.example.android.newsapp;
 
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.util.Log;
 
 public class CategoryAdapter extends FragmentStatePagerAdapter {
 

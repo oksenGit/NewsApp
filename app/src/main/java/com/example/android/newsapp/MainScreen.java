@@ -27,7 +27,7 @@ public class MainScreen extends Fragment {
     @BindView(R.id.feed_searchButton)
     ImageView searchImageView;
 
-    MainActivity router;
+    private MainActivity router;
 
     public MainScreen(MainActivity router){
         this.router = router;

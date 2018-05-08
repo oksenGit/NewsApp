@@ -1,7 +1,5 @@
 package com.example.android.newsapp;
 
-import android.graphics.Bitmap;
-
 public class NewsItem {
     String date;
     String title;

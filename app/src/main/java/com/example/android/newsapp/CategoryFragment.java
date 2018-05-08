@@ -1,7 +1,6 @@
 package com.example.android.newsapp;
 
 import android.annotation.SuppressLint;
-import android.app.usage.NetworkStats;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,10 +8,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -20,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,10 +28,9 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
 
 
     static String API_KEY = "4e57bf51-7c41-4fcb-b2a0-de62b2002c5d";
-    String newsSection;
-    ArrayList<NewsItem> newsItems;
-    NewsAdapter newsAdapter;
-    boolean visited;
+    private String newsSection;
+    private ArrayList<NewsItem> newsItems;
+    private NewsAdapter newsAdapter;
 
     @BindView(R.id.list)
     RecyclerView recyclerView;
@@ -59,7 +54,6 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(newsAdapter);
         getLoaderManager().initLoader(0, null, this);
-        visited = true;
         return rootView;
     }
 

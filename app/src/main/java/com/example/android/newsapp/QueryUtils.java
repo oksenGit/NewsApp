@@ -22,26 +22,13 @@ import java.util.List;
 public class QueryUtils {
     private static String LOG_TAG = "QueryUtils";
 
-    /**
-     * Create a private constructor because no one should ever create a {@link QueryUtils} object.
-     * This class is only meant to hold static variables and methods, which can be accessed
-     * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed).
-     */
     private QueryUtils() {
     }
 
-    /**
-     * Return a list of {@link NewsItem} objects that has been built up from
-     * parsing a JSON response.
-     */
     public static ArrayList<NewsItem> extractNews(String JSON_RESPONSE) {
 
-        // Create an empty ArrayList that we can start adding News to
         ArrayList<NewsItem> newsItems = new ArrayList<>();
 
-        // Try to parse the SAMPLE_JSON_RESPONSE. If there's a problem with the way the JSON
-        // is formatted, a JSONException exception object will be thrown.
-        // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
             JSONObject reader = new JSONObject(JSON_RESPONSE);
             JSONObject response = reader.getJSONObject("response");
@@ -109,8 +96,8 @@ public class QueryUtils {
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setReadTimeout(10000);
+            urlConnection.setConnectTimeout(15000);
             urlConnection.connect();
             if (urlConnection.getResponseCode() != 200)
                 Log.e(LOG_TAG, "Error response code" + urlConnection.getResponseCode());
@@ -123,7 +110,7 @@ public class QueryUtils {
                 urlConnection.disconnect();
             }
             if (inputStream != null) {
-                // function must handle java.io.IOException here
+
                 inputStream.close();
             }
         }
