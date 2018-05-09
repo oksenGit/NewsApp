@@ -60,7 +60,7 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
     @NonNull
     @Override
     public Loader<List<NewsItem>> onCreateLoader(int id, @Nullable Bundle args) {
-        return new NewsLoader(this.getContext(), "https://content.guardianapis.com/search?q=" + newsSection + "&format=json&page-size=50&show-fields=headline,thumbnail&show-blocks=all&order-by=newest&api-key=" + API_KEY);
+        return new NewsLoader(this.getContext(), "https://content.guardianapis.com/search?q=" + newsSection + "&format=json&page-size=50&show-fields=headline,thumbnail&show-tags=contributor&show-blocks=all&order-by=newest&api-key=" + API_KEY);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
             newsAdapter.notifyDataSetChanged();
         } else {
             if (!isNetworkAvailable())
-                emptyView.setText("No Internet Connection");
+                emptyView.setText(R.string.no_internet);
             else
                 emptyView.setText(R.string.nothing_found);
         }

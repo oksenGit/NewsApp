@@ -33,26 +33,33 @@ public class QueryUtils {
             JSONObject reader = new JSONObject(JSON_RESPONSE);
             JSONObject response = reader.getJSONObject("response");
             JSONArray results = response.getJSONArray("results");
+
             for (int i = 0; i < results.length(); i++) {
                 JSONObject obj = results.getJSONObject(i);
                 String date = obj.getString("webPublicationDate");
                 String section = obj.getString("sectionName");
                 String url = obj.getString("webUrl");
+
+                JSONArray tags = obj.getJSONArray("tags");
+                String author = "";
+                String authorImage = "";
+                if(tags.length()>0) {
+                    author = "By: " + tags.getJSONObject(0).getString("webTitle");
+                    if (tags.getJSONObject(0).has("bylineImageUrl"))
+                        authorImage = tags.getJSONObject(0).getString("bylineImageUrl");
+                }
+
                 JSONObject fields = obj.getJSONObject("fields");
                 String title = fields.getString("headline");
-                String thumbString = null;
-                if (fields.has("thumbnail")) {
+                String thumbString ="";;
+                if (fields.has("thumbnail"))
                     thumbString = fields.getString("thumbnail");
-                }
-                else{
-                    thumbString = R.drawable.ic_launcher_background+"";
-                }
 
                 JSONObject blocks = obj.getJSONObject("blocks");
                 JSONArray body = blocks.getJSONArray("body");
                 String content = body.getJSONObject(0).getString("bodyTextSummary");
 
-                newsItems.add(new NewsItem(title, thumbString, date,section,url, content));
+                newsItems.add(new NewsItem(title, thumbString, date, author, authorImage, section, url, content));
             }
 
         } catch (JSONException e) {

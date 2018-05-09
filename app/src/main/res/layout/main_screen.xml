@@ -44,7 +44,7 @@
         android:background="#fff"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/colorPrimary"
-        app:tabTextColor="@color/colorBackground" />
+        app:tabTextColor="@color/colorOff" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/feed_viewpager"

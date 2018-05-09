@@ -1,5 +1,17 @@
 <resources>
     <string name="app_name">News App</string>
-    <string name="nothing_found">Nothing Found</string>
+    <string name="nothing_found">
+        Nothing Found
+        \n\nSuggestions:
+        \nTry Restarting the app
+
+        \n\nFor Searches:
+        \n\n\Make sure that all words are spelled correctly.
+        \n\n\Try different keywords.
+        \nTry more general keywords.
+        \nTry fewer keywords.
+    </string>
     <string name="open_browser"><u>Open In Browser</u>\nFor Full Content</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="no_browser">Couldn\'t find a web browser on your device</string>
 </resources>

@@ -25,38 +25,38 @@
             android:id="@+id/details_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="TextView"
-            android:textColor="@color/textSecondary"
+            android:background="@color/textBackground"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_image"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="19/8/18" />
 
         <TextView
             android:id="@+id/details_link"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginEnd="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="8dp"
             android:autoLink="web"
             android:text="@string/open_browser"
             android:textColor="@color/colorAccent"
-            app:layout_constraintBottom_toBottomOf="@+id/details_section"
+            app:layout_constraintBottom_toBottomOf="@+id/details_author_image"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/details_date" />
+            app:layout_constraintTop_toBottomOf="@+id/details_image" />
 
         <TextView
             android:id="@+id/details_section"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
+            android:background="@color/textBackground"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="4dp"
-            android:textColor="@color/textSecondary"
+            android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/details_date"
             tools:text="Opinion" />
@@ -80,14 +80,45 @@
             android:id="@+id/details_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:padding="16dp"
             android:textColor="@color/textPrimary"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/details_section"
+            app:layout_constraintTop_toBottomOf="@+id/details_author"
             tools:text="Title" />
+
+        <ImageView
+            android:id="@+id/details_author_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/details_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.07"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_image"
+            app:layout_constraintVertical_bias="0.722"
+            app:srcCompat="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/details_author"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="@+id/details_author_image"
+            app:layout_constraintStart_toStartOf="@+id/details_author_image"
+            app:layout_constraintTop_toBottomOf="@+id/details_author_image"
+            tools:text="Gloria Borga" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

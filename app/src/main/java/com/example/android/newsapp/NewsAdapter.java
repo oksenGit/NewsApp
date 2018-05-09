@@ -10,9 +10,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+
 import org.sufficientlysecure.htmltextview.HtmlTextView;
+
 import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -21,7 +26,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     Context context;
     ArrayList<NewsItem> news;
 
-    NewsAdapter(Context context, ArrayList<NewsItem> news){
+    NewsAdapter(Context context, ArrayList<NewsItem> news) {
         this.context = context;
         this.news = news;
     }
@@ -29,7 +34,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     @NonNull
     @Override
     public NewsAdapter.NewsHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.news_item,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.news_item, parent, false);
         return new NewsHolder(view);
     }
 
@@ -40,8 +45,18 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         holder.content.setHtml(N.content);
         holder.date.setText(N.date);
         holder.section.setText(N.section);
-        if(N.thumb != null){
-            Glide.with(context).load(N.thumb).into(holder.thumb);
+        if (!N.author.equals("")) {
+            holder.author.setText(N.author);
+        }
+        else{
+            holder.author.setVisibility(View.GONE);
+        }
+
+        Glide.with(context).load(N.thumb).into(holder.thumb);
+        if (!N.authorImage.equals("")) {
+            Glide.with(context).load(N.authorImage).apply(RequestOptions.circleCropTransform()).into(holder.authorImage);
+        } else {
+            holder.authorImage.setVisibility(View.GONE);
         }
         holder.readmore.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +66,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
                 intent.putExtra(DetailsActivity.EXTRA_DATE, N.date);
                 intent.putExtra(DetailsActivity.EXTRA_CONTENT, N.content);
                 intent.putExtra(DetailsActivity.EXTRA_THUMB, N.thumb);
+                intent.putExtra(DetailsActivity.EXTRA_AUTHOR, N.author);
+                intent.putExtra(DetailsActivity.EXTRA_AUTHORIMAGE, N.authorImage);
                 intent.putExtra(DetailsActivity.EXTRA_SECTION, N.section);
                 intent.putExtra(DetailsActivity.EXTRA_URL, N.url);
                 context.startActivity(intent);
@@ -63,7 +80,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         return news.size();
     }
 
-    public class NewsHolder extends RecyclerView.ViewHolder{
+    public class NewsHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.newsitem_thumb)
         ImageView thumb;
         @BindView(R.id.newsitem_title)
@@ -76,6 +93,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         HtmlTextView content;
         @BindView(R.id.newsitem_readmore)
         TextView readmore;
+        @BindView(R.id.newsitem_author)
+        TextView author;
+        @BindView(R.id.newsitem_author_image)
+        ImageView authorImage;
 
         public NewsHolder(View itemView) {
             super(itemView);
