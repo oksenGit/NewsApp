@@ -15,8 +15,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import org.sufficientlysecure.htmltextview.HtmlTextView;
-
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,7 +32,7 @@ public class DetailsActivity extends AppCompatActivity {
     public static final String EXTRA_URL = "url";
 
     @BindView(R.id.details_content)
-    HtmlTextView contentView;
+    TextView contentView;
     @BindView(R.id.details_date)
     TextView dateView;
     @BindView(R.id.details_title)
@@ -56,7 +54,7 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.news_item_details);
         ButterKnife.bind(this);
 
-        contentView.setHtml(getIntent().getStringExtra(EXTRA_CONTENT));
+        contentView.setText(getIntent().getStringExtra(EXTRA_CONTENT));
         dateView.setText(getIntent().getStringExtra(EXTRA_DATE));
         titleView.setText(getIntent().getStringExtra(EXTRA_TITLE));
         section.setText(getIntent().getStringExtra(EXTRA_SECTION));

@@ -14,8 +14,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import org.sufficientlysecure.htmltextview.HtmlTextView;
-
 import java.util.ArrayList;
 
 import butterknife.BindView;
@@ -42,7 +40,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     public void onBindViewHolder(@NonNull final NewsAdapter.NewsHolder holder, int position) {
         final NewsItem N = news.get(position);
         holder.title.setText(N.title);
-        holder.content.setHtml(N.content);
         holder.date.setText(N.date);
         holder.section.setText(N.section);
         if (!N.author.equals("")) {
@@ -53,11 +50,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         }
 
         Glide.with(context).load(N.thumb).into(holder.thumb);
-        if (!N.authorImage.equals("")) {
-            Glide.with(context).load(N.authorImage).apply(RequestOptions.circleCropTransform()).into(holder.authorImage);
-        } else {
-            holder.authorImage.setVisibility(View.GONE);
-        }
+
         holder.readmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,14 +82,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         TextView date;
         @BindView(R.id.newsitem_section)
         TextView section;
-        @BindView(R.id.newsitem_content)
-        HtmlTextView content;
         @BindView(R.id.newsitem_readmore)
         TextView readmore;
         @BindView(R.id.newsitem_author)
         TextView author;
-        @BindView(R.id.newsitem_author_image)
-        ImageView authorImage;
+
 
         public NewsHolder(View itemView) {
             super(itemView);
