@@ -17,7 +17,6 @@ import android.widget.ImageView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@SuppressLint("ValidFragment")
 public class MainScreen extends Fragment {
     @BindView(R.id.feed_viewpager)
     ViewPager viewPager;
@@ -28,25 +27,19 @@ public class MainScreen extends Fragment {
     @BindView(R.id.feed_searchButton)
     ImageView searchImageView;
 
-    private MainActivity router;
-
-    public MainScreen(MainActivity router){
-        this.router = router;
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.main_screen,container, false);
         ButterKnife.bind(this, rootView);
-        CategoryAdapter categoryAdapter = new CategoryAdapter(router.getSupportFragmentManager());
+        CategoryAdapter categoryAdapter = new CategoryAdapter(getActivity().getSupportFragmentManager());
         viewPager.setAdapter(categoryAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
         searchImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent searchIntent = new Intent(router, SearchActivity.class);
+                Intent searchIntent = new Intent(getActivity(), SearchActivity.class);
                 startActivity(searchIntent);
             }
         });

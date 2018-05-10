@@ -30,7 +30,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-@SuppressLint("ValidFragment")
 public class CategoryFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<NewsItem>> {
 
     static String API_KEY = "4e57bf51-7c41-4fcb-b2a0-de62b2002c5d";
@@ -53,9 +52,6 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
     TextView pageLeft;
     @BindView(R.id.page_right)
     TextView pageRight;
-    public CategoryFragment(String newsSection) {
-        this.newsSection = newsSection;
-    }
 
 
 
@@ -64,6 +60,8 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.news_list, container, false);
         ButterKnife.bind(this, rootView);
+        Bundle args = getArguments();
+        newsSection = args.getString("searchTerm");
         sharedPrefs = android.preference.PreferenceManager.getDefaultSharedPreferences(getContext());
         pageCurrent.setText("1");
         navVisable(false);

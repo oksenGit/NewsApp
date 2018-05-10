@@ -29,7 +29,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String queryText = searchBox.getText().toString();
-                Fragment search = new CategoryFragment(queryText.toLowerCase());
+                Fragment search = newCategoryInstance(queryText);
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.frag_container,search);
@@ -37,5 +37,13 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private static CategoryFragment newCategoryInstance(String searchTerm) {
+        CategoryFragment f = new CategoryFragment();
+        Bundle args = new Bundle();
+        args.putString("searchTerm", searchTerm);
+        f.setArguments(args);
+        return f;
     }
 }

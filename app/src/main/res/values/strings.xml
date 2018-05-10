@@ -22,7 +22,7 @@
     <string name="prefrence_title">News Filter</string>
 
     <!--Menu Item-->
-    <string name="filter_menu_item">Filter</string>
+    <string name="filter_menu_item">Settings</string>
 
     <!--Filters-->
     <!--From Date-->
