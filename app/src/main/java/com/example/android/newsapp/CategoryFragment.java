@@ -32,7 +32,8 @@ import butterknife.ButterKnife;
 
 public class CategoryFragment extends Fragment implements LoaderManager.LoaderCallbacks<List<NewsItem>> {
 
-    static String API_KEY = "4e57bf51-7c41-4fcb-b2a0-de62b2002c5d";
+    private static String API_KEY = "4e57bf51-7c41-4fcb-b2a0-de62b2002c5d";
+    private static final int LOADER_ID = 0;
     String GuardianURL = "https://content.guardianapis.com/search";
     private String newsSection;
     private ArrayList<NewsItem> newsItems;
@@ -77,7 +78,7 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
                 loadingIndicator.setVisibility(View.VISIBLE);
                 currentPage++;
                 pageCurrent.setText(currentPage+"");
-                getLoaderManager().restartLoader(0, null, CategoryFragment.this);
+                getLoaderManager().restartLoader(LOADER_ID, null, CategoryFragment.this);
             }
         });
         pageLeft.setOnClickListener(new View.OnClickListener() {
@@ -88,11 +89,11 @@ public class CategoryFragment extends Fragment implements LoaderManager.LoaderCa
                     loadingIndicator.setVisibility(View.VISIBLE);
                     currentPage--;
                     pageCurrent.setText(currentPage+"");
-                    getLoaderManager().restartLoader(0, null, CategoryFragment.this);
+                    getLoaderManager().restartLoader(LOADER_ID, null, CategoryFragment.this);
                 }
             }
         });
-        getLoaderManager().initLoader(0, null, this);
+        getLoaderManager().initLoader(LOADER_ID, null, this);
 
         return rootView;
     }
