@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">News App</string>
+
+    <string name="open_browser"><u>Open In Browser</u>\nFor Full Content</string>
+
+    <!--ERROR RESPONSES-->
+    <string name="no_internet">No Internet Connection</string>
+    <string name="no_browser">Couldn\'t find a web browser on your device</string>
     <string name="nothing_found">
         Nothing Found
         \n\nSuggestions:
@@ -11,7 +17,31 @@
         \nTry more general keywords.
         \nTry fewer keywords.
     </string>
-    <string name="open_browser"><u>Open In Browser</u>\nFor Full Content</string>
-    <string name="no_internet">No Internet Connection</string>
-    <string name="no_browser">Couldn\'t find a web browser on your device</string>
+
+
+    <string name="prefrence_title">News Filter</string>
+
+    <!--Menu Item-->
+    <string name="filter_menu_item">Filter</string>
+
+    <!--Filters-->
+    <!--From Date-->
+    <string name="date_from_key" translatable="false">from-date</string>
+    <string name="date_from_title">News Since</string>
+
+    <!--To Date-->
+    <string name="date_to_key" translatable="false">to-date</string>
+    <string name="date_to_title">News To</string>
+
+    <!--Order By-->
+    <string name="order_by_default" translatable="false">newest</string>
+    <string name="order_by_key" translatable="false">order-by</string>
+    <string name="order_by_title">Order by</string>
+
+    <!--Item Per Page-->
+    <string name="item_per_page_default" translatable="false">15</string>
+    <string name="item_per_page_key" translatable="false">page-size</string>
+    <string name="item_per_page_title">Item/Page (max:50)</string>
+
+
 </resources>
